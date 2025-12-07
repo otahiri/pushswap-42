@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:20:06 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/07 10:43:33 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/07 11:53:33 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ void				rr(t_dlist **lsta, t_dlist **lstb);
 void				rra(t_dlist **lsta);
 void				rrb(t_dlist **lstb);
 void				rrr(t_dlist **lsta, t_dlist **lstb);
+int					custom_atoi(const char *nptr);
+int					check_nums(char *num);
+void				parse_string(t_dlist **lsta, t_dlist **lstb, char *nums);
 
 #endif

@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/23 20:10:33 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
 static int	overflow_check(int sign)
 {
@@ -18,7 +18,7 @@ static int	overflow_check(int sign)
 	return (-1);
 }
 
-int	ft_atoi(const char *nptr)
+int	custom_atoi(const char *nptr)
 {
 	int		sign;
 	long	num;
@@ -41,5 +41,7 @@ int	ft_atoi(const char *nptr)
 		num += *nptr - '0';
 		nptr++;
 	}
+	if (*nptr)
+		exit(0);
 	return (num * sign);
 }
