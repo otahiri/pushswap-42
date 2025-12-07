@@ -15,15 +15,18 @@ void	sa(t_dlist **lst)
 {
 	swap_last_elements(lst);
 }
+
 void	sb(t_dlist **lst)
 {
 	swap_last_elements(lst);
 }
+
 void	ss(t_dlist **lsta, t_dlist **lstb)
 {
 	swap_last_elements(lsta);
 	swap_last_elements(lstb);
 }
+
 void	pa(t_dlist **lsta, t_dlist **lstb)
 {
 	t_dlist	*last_of_b;
@@ -32,6 +35,7 @@ void	pa(t_dlist **lsta, t_dlist **lstb)
 	last_of_b->previous->next = NULL;
 	add_back(lsta, last_of_b);
 }
+
 void	pb(t_dlist **lsta, t_dlist **lstb)
 {
 	t_dlist	*last_of_a;

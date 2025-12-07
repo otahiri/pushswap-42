@@ -15,19 +15,23 @@ void	ra(t_dlist **lsta)
 {
 	rotate_top_bottom(lsta);
 }
+
 void	rb(t_dlist **lstb)
 {
 	rotate_top_bottom(lstb);
 }
+
 void	rr(t_dlist **lsta, t_dlist **lstb)
 {
 	ra(lsta);
 	rb(lstb);
 }
+
 void	rra(t_dlist **lsta)
 {
 	rrotate_top_bottom(lsta);
 }
+
 void	rrb(t_dlist **lstb)
 {
 	rrotate_top_bottom(lstb);
