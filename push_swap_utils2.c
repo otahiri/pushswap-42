@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 08:13:44 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/16 08:24:43 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/12/07 10:38:29 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/12/07 10:43:25 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ra(t_dlist **lsta)
 {
-	unsigned char	*str;
-	size_t			i;
-
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
-	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
-	}
-	return (NULL);
+	rotate_top_bottom(lsta);
+}
+void	rb(t_dlist **lstb)
+{
+	rotate_top_bottom(lstb);
+}
+void	rr(t_dlist **lsta, t_dlist **lstb)
+{
+	ra(lsta);
+	rb(lstb);
+}
+void	rra(t_dlist **lsta)
+{
+	rrotate_top_bottom(lsta);
+}
+void	rrb(t_dlist **lstb)
+{
+	rrotate_top_bottom(lstb);
 }

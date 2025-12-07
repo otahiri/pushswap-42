@@ -9,47 +9,55 @@
 /*   Updated: 2025/12/05 15:09:58 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf/libft/libft.h"
+#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-int	check_if_num(char **str)
+int	check_nums(char *num)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (str[i])
+	while (num[i])
 	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (ft_isdigit(str[i][j]))
-				return (1);
-			j++;
-		}
+		if (!ft_isdigit(num[i]))
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
-int	main(int argc, char **argv)
+void	parse_string(t_dlist **lsta, t_dlist **lstb, char *nums)
 {
+	char	**split_nums;
 	int		i;
-	t_list	*lst;
-	char	**nums;
-	int		idx;
 
-	i = 1;
-	lst = NULL;
-	if (argc < 2)
-		return (ft_printf("please enter at least 2 numbers"), 0);
-	while (i < argc)
+	i = 0;
+	split_nums = ft_split(nums, ' ');
+	while (split_nums[i])
 	{
-		idx = 0;
-		nums = ft_split(argv[i], ' ');
-		if (check_if_num(nums))
-			exit(1);
+		ft_printf("%s\n", split_nums[i]);
+		if (!check_nums(split_nums[i]))
+			exit(0);
+		add_back(lsta, new_list(ft_atoi(split_nums[i])));
 		i++;
 	}
-	
+}
+
+int	main(int argc, char *argv[])
+{
+	t_dlist	*lsta;
+	t_dlist	*lstb;
+	int		i;
+
+	lsta = NULL;
+	lstb = NULL;
+	i = 0;
+	i++;
+	while (i < argc)
+		parse_string(&lsta, &lstb, argv[i++]);
+	while (lsta)
+	{
+		ft_printf("%d\n", lsta->node->data);
+		lsta = lsta->next;
+	}
 }

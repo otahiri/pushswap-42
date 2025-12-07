@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 08:13:44 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/16 08:24:43 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/12/07 10:39:39 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/12/07 10:43:28 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	rrr(t_dlist **lsta, t_dlist **lstb)
 {
-	unsigned char	*str;
-	size_t			i;
-
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
-	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
-	}
-	return (NULL);
+	rra(lsta);
+	rrb(lstb);
 }

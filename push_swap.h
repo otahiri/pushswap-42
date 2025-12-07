@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:20:06 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/06 11:56:46 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/07 10:43:33 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,16 @@ void				add_front(t_dlist **lst, t_dlist *node);
 void				swap_last_elements(t_dlist **lst);
 void				rotate_top_bottom(t_dlist **lst);
 void				rrotate_top_bottom(t_dlist **lst);
+void	sa(t_dlist **lst);
+void	sb(t_dlist **lst);
+void	ss(t_dlist **lsta, t_dlist **lstb);
+void	pa(t_dlist **lsta, t_dlist **lstb);
+void	pb(t_dlist **lsta, t_dlist **lstb);
+void	ra(t_dlist **lsta);
+void	rb(t_dlist **lstb);
+void	rr(t_dlist **lsta, t_dlist **lstb);
+void	rra(t_dlist **lsta);
+void	rrb(t_dlist **lstb);
+void	rrr(t_dlist **lsta, t_dlist **lstb);
+
 #endif

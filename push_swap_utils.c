@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:11:29 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/06 12:11:07 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/07 10:43:22 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -39,30 +39,4 @@ void	pb(t_dlist **lsta, t_dlist **lstb)
 	last_of_a = get_last(*lsta);
 	last_of_a->previous->next = NULL;
 	add_back(lstb, last_of_a);
-}
-void	ra(t_dlist **lsta)
-{
-	rotate_top_bottom(lsta);
-}
-void	rb(t_dlist **lstb)
-{
-	rotate_top_bottom(lstb);
-}
-void	rr(t_dlist **lsta, t_dlist **lstb)
-{
-	ra(lsta);
-	rb(lstb);
-}
-void	rra(t_dlist **lsta)
-{
-	rrotate_top_bottom(lsta);
-}
-void	rrb(t_dlist **lstb)
-{
-	rrotate_top_bottom(lstb);
-}
-void	rrr(t_dlist **lsta, t_dlist **lstb)
-{
-	rra(lsta);
-	rrb(lstb);
 }

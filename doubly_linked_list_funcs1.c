@@ -24,8 +24,8 @@ t_dlist	*new_list(int num)
 
 t_dlist	*get_last(t_dlist *lst)
 {
-	if (!lst)
-		return (NULL);
+	if (!lst || !lst->next)
+		return (lst);
 	while (lst->next)
 		lst = lst->next;
 	return (lst);
@@ -35,8 +35,13 @@ void	add_back(t_dlist **lst, t_dlist *node)
 {
 	t_dlist	*last;
 
-	if (!node || !lst || !*lst)
+	if (!node || !lst)
 		return ;
+	if (!*lst)
+	{
+		*lst = node;
+		return ;
+	}
 	last = get_last(*lst);
 	last->next = node;
 	node->previous = last;
@@ -59,8 +64,9 @@ void	swap_last_elements(t_dlist **lst)
 {
 	t_dlist	*last;
 	t_dlist	*blast;
-	t_dlist	*head = *lst;
+	t_dlist	*head;
 
+	head = *lst;
 	last = get_last(*lst);
 	blast = last->previous;
 	last->next = blast;
