@@ -29,3 +29,18 @@ void	rotate_top_bottom(t_dlist **lst)
 	*lst = head->next;
 	add_back(lst, head);
 }
+
+int	dlst_size(t_dlist *lst)
+{
+	int	i;
+
+	if (!lst)
+		return (0);
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
+}

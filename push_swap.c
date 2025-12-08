@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include "ft_printf/libft/libft.h"
 
 int	check_nums(char *num)
 {
@@ -57,6 +58,15 @@ void	parse_string(t_dlist **lsta, t_dlist **lstb, char *nums)
 	}
 }
 
+void	sort_stack(t_dlist **lsta, t_dlist **lstb)
+{
+	int	*sorted_list;
+
+	sorted_list = ft_calloc(dlst_size(*lsta), sizeof(int));
+	copy_dlst(*lsta, &sorted_list);
+	sort_arr(&sorted_list);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_dlist	*lsta;
@@ -69,6 +79,7 @@ int	main(int argc, char *argv[])
 	i++;
 	while (i < argc)
 		parse_string(&lsta, &lstb, argv[i++]);
+	sort_stack(&lsta, lstb);
 	while (lsta)
 	{
 		ft_printf("%d\n", lsta->node->data);

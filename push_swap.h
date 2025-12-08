@@ -50,6 +50,8 @@ void				rrr(t_dlist **lsta, t_dlist **lstb);
 int					custom_atoi(const char *nptr);
 int					check_nums(char *num);
 void				parse_string(t_dlist **lsta, t_dlist **lstb, char *nums);
-int					throw_error(void);
+void				throw_error(void);
+int					dlst_size(t_dlist *lst);
+void				copy_dlst(t_dlist *lst, int **arr);
 
 #endif
