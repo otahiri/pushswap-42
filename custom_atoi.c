@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static int	overflow_check(int sign)
-{
-	if (sign < 0)
-		return (0);
-	return (-1);
-}
-
 int	custom_atoi(const char *nptr)
 {
 	int		sign;
@@ -35,13 +28,13 @@ int	custom_atoi(const char *nptr)
 	}
 	while (*nptr && (*nptr >= '0' && *nptr <= '9'))
 	{
-		if (((num * 10) + (*nptr - '0')) < 0)
-			return (overflow_check(sign));
 		num *= 10;
 		num += *nptr - '0';
 		nptr++;
+		if (num * sign > INT_MAX || num * sign < INT_MIN)
+			throw_error();
 	}
 	if (*nptr)
-		exit(0);
+		throw_error();
 	return (num * sign);
 }

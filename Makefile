@@ -20,7 +20,7 @@ $(FT_PRINTF):
 
 
 $(NAME): $(HEADER) $(FT_PRINTF) $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) $(FT_PRINTF) -o $(NAME)
+	$(CC) -g $(CFLAGS) $(SRCS) $(FT_PRINTF) -o $(NAME)
 
 clean:
 	make -C ./ft_printf clean

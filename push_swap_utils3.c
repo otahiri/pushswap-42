@@ -16,3 +16,9 @@ void	rrr(t_dlist **lsta, t_dlist **lstb)
 	rra(lsta);
 	rrb(lstb);
 }
+
+int	throw_error(void)
+{
+	ft_putstr_fd("error", 2);
+	return (0);
+}

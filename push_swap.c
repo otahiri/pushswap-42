@@ -9,8 +9,6 @@
 /*   Updated: 2025/12/07 13:38:04 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf/ft_printf.h"
-#include "ft_printf/libft/libft.h"
 #include "push_swap.h"
 
 int	check_nums(char *num)
@@ -22,7 +20,7 @@ int	check_nums(char *num)
 	{
 		i++;
 		if (!ft_isdigit(num[i]))
-			exit(0);
+			throw_error();
 	}
 	while (num[i])
 	{
@@ -45,13 +43,13 @@ void	parse_string(t_dlist **lsta, t_dlist **lstb, char *nums)
 	while (split_nums[i])
 	{
 		if (!check_nums(split_nums[i]))
-			exit(0);
+			throw_error();
 		res_num = custom_atoi(split_nums[i]);
 		tmp = *lsta;
 		while (tmp)
 		{
 			if (tmp->node->data == res_num)
-				exit(0);
+				throw_error();
 			tmp = tmp->next;
 		}
 		add_back(lsta, new_list(res_num));

@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "./ft_printf/ft_printf.h"
+# include <limits.h>
 
 typedef struct s_node
 {
@@ -49,5 +50,6 @@ void				rrr(t_dlist **lsta, t_dlist **lstb);
 int					custom_atoi(const char *nptr);
 int					check_nums(char *num);
 void				parse_string(t_dlist **lsta, t_dlist **lstb, char *nums);
+int					throw_error(void);
 
 #endif
