@@ -6,11 +6,10 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:17:41 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/07 13:38:04 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:04:21 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include "ft_printf/libft/libft.h"
 
 int	check_nums(char *num)
 {
@@ -32,7 +31,7 @@ int	check_nums(char *num)
 	return (1);
 }
 
-void	parse_string(t_dlist **lsta, t_dlist **lstb, char *nums)
+void	parse_string(t_dlist **lsta, char *nums)
 {
 	char		**split_nums;
 	int			i;
@@ -61,10 +60,16 @@ void	parse_string(t_dlist **lsta, t_dlist **lstb, char *nums)
 void	sort_stack(t_dlist **lsta, t_dlist **lstb)
 {
 	int	*sorted_list;
+	int	size;
 
-	sorted_list = ft_calloc(dlst_size(*lsta), sizeof(int));
-	copy_dlst(*lsta, &sorted_list);
-	sort_arr(&sorted_list);
+	size = dlst_size(*lsta);
+	sorted_list = ft_calloc(size, sizeof(int));
+	copy_dlst(*lsta, sorted_list);
+	sort_arr(sorted_list, size);
+	set_ranks(lsta, sorted_list);
+	push_all_to_b(lsta, lstb);
+	sort_a(lsta);
+	calculate_cost(lsta, lstb);
 }
 
 int	main(int argc, char *argv[])
@@ -78,11 +83,11 @@ int	main(int argc, char *argv[])
 	i = 0;
 	i++;
 	while (i < argc)
-		parse_string(&lsta, &lstb, argv[i++]);
-	sort_stack(&lsta, lstb);
+		parse_string(&lsta, argv[i++]);
+	sort_stack(&lsta, &lstb);
 	while (lsta)
 	{
-		ft_printf("%d\n", lsta->node->data);
+		ft_printf("num is %d rank is %d\n", lsta->node->data, lsta->node->rank);
 		lsta = lsta->next;
 	}
 }

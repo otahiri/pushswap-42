@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:20:06 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/07 11:53:33 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:03:32 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_node
 {
 	int				data;
 	int				rank;
+	int				cost_a;
+	int				cost_b;
 }					t_node;
 
 typedef struct s_dlist
@@ -49,9 +51,13 @@ void				rrb(t_dlist **lstb);
 void				rrr(t_dlist **lsta, t_dlist **lstb);
 int					custom_atoi(const char *nptr);
 int					check_nums(char *num);
-void				parse_string(t_dlist **lsta, t_dlist **lstb, char *nums);
+void				parse_string(t_dlist **lsta, char *nums);
 void				throw_error(void);
 int					dlst_size(t_dlist *lst);
-void				copy_dlst(t_dlist *lst, int **arr);
+void				copy_dlst(t_dlist *lst, int *arr);
+void				sort_arr(int *sorted_list, int size);
+void				set_ranks(t_dlist **lsta, int *sorted_list);
+void				push_all_to_b(t_dlist **lsta, t_dlist **lstb);
+void				calculate_cost(t_dlist **lsta, t_dlist **lstb);
 
 #endif
