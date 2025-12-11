@@ -9,14 +9,19 @@
 /*   Updated: 2025/12/09 12:14:57 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-void	set_cost(t_dlist **lst, int size, int idx)
+void	set_cost(t_dlist **lst, int size, int idxa, int idxb)
 {
-	if (idx > (size / 2))
-		(*lst)->node->cost_a_ra = idx;
+	if (idxa > (size / 2))
+		(*lst)->node->cost_a_ra = idxa;
 	else
-		(*lst)->node->cost_a_rra = idx;
+		(*lst)->node->cost_a_rra = idxa;
+	if (idxb > (size / 2))
+		(*lst)->node->cost_b_rb = idxb;
+	else
+		(*lst)->node->cost_b_rrb = idxb;
 }
 
 void	for_each_cost(t_dlist *node, t_dlist **lstb, t_dlist **lsta)
@@ -37,13 +42,13 @@ void	for_each_cost(t_dlist *node, t_dlist **lstb, t_dlist **lsta)
 		idx_a++;
 		tmpa = tmpa->next;
 	}
-	set_cost(&node, size, idx_a);
+	ft_printf("%d\n", idx_a);
 	while (tmpb && tmpb->node->rank < node->node->rank)
 	{
 		idx_b++;
 		tmpb = tmpb->next;
 	}
-	set_cost(&node, size, idx_b);
+	set_cost(&node, size, idx_a, idx_b);
 }
 
 void	calculate_cost(t_dlist **lsta, t_dlist **lstb)
@@ -51,7 +56,7 @@ void	calculate_cost(t_dlist **lsta, t_dlist **lstb)
 	t_dlist	*tmpa;
 	t_dlist	*tmpb;
 
-	tmpa = *lstb;
+	tmpa = *lsta;
 	tmpb = *lstb;
 	while (tmpa)
 	{

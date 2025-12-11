@@ -21,9 +21,9 @@ typedef struct s_node
 	int				data;
 	int				rank;
 	int				cost_a_ra;
-	int				cost_b_ra;
+	int				cost_b_rb;
 	int				cost_a_rra;
-	int				cost_b_rra;
+	int				cost_b_rrb;
 }					t_node;
 
 typedef struct s_dlist
@@ -61,7 +61,7 @@ void				sort_arr(int *sorted_list, int size);
 void				set_ranks(t_dlist **lsta, int *sorted_list);
 void				push_all_to_b(t_dlist **lsta, t_dlist **lstb);
 void				calculate_cost(t_dlist **lsta, t_dlist **lstb);
-void				set_cost(t_dlist **lst, int size, int idx);
+void				set_cost(t_dlist **lst, int size, int idxa, int idxb);
 void				for_each_cost(t_dlist *node, t_dlist **lstb,
 						t_dlist **lsta);
 void				calculate_cost(t_dlist **lsta, t_dlist **lstb);
