@@ -11,44 +11,51 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+void	set_cost(t_dlist **lst, int size, int idx)
+{
+	if (idx > (size / 2))
+		(*lst)->node->cost_a_ra = idx;
+	else
+		(*lst)->node->cost_a_rra = idx;
+}
+
+void	for_each_cost(t_dlist *node, t_dlist **lstb, t_dlist **lsta)
+{
+	int		size;
+	int		idx_a;
+	int		idx_b;
+	t_dlist	*tmpa;
+	t_dlist	*tmpb;
+
+	tmpa = *lsta;
+	tmpb = *lstb;
+	size = dlst_size(*lsta);
+	idx_a = 0;
+	idx_b = 0;
+	while (tmpa != node)
+	{
+		idx_a++;
+		tmpa = tmpa->next;
+	}
+	set_cost(&node, size, idx_a);
+	while (tmpb && tmpb->node->rank < node->node->rank)
+	{
+		idx_b++;
+		tmpb = tmpb->next;
+	}
+	set_cost(&node, size, idx_b);
+}
+
 void	calculate_cost(t_dlist **lsta, t_dlist **lstb)
 {
-}
+	t_dlist	*tmpa;
+	t_dlist	*tmpb;
 
-void	push_all_to_b(t_dlist **lsta, t_dlist **lstb)
-{
-	int	size;
-
-	size = dlst_size(*lsta);
-	while (size > 3)
+	tmpa = *lstb;
+	tmpb = *lstb;
+	while (tmpa)
 	{
-		pb(lsta, lstb);
-		size--;
+		for_each_cost(tmpa, lstb, lsta);
+		tmpa = tmpa->next;
 	}
 }
-
-void	sort_a(t_dlist **lsta)
-{
-	static const int	ap[6][3] = {{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1},
-	{3, 1, 2}, {3, 2, 1}};
-	int					fn;
-	int					sn;
-	int					tn;
-
-	fn = (*lsta)->node->data;
-	sn = (*lsta)->next->node->data;
-	tn = (*lsta)->next->next->node->data;
-	if (fn == ap[0][0] && sn == ap[0][1] && tn == ap[0][2])
-		return ;
-	else if (fn == ap[1][0] && sn == ap[1][1] && tn == ap[1][2])
-		(lsta);
-	else if (fn == ap[2][0] && sn == ap[2][1] && tn == ap[2][2])
-		 ;
-	else if (fn == ap[3][0] && sn == ap[3][1] && tn == ap[3][2])
-		return ;
-	else if (fn == ap[4][0] && sn == ap[4][1] && tn == ap[4][2])
-		return ;
-	else if (fn == ap[5][0] && sn == ap[5][1] && tn == ap[5][2])
-		return ;
-}
-312

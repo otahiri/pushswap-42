@@ -67,8 +67,6 @@ void	sort_stack(t_dlist **lsta, t_dlist **lstb)
 	copy_dlst(*lsta, sorted_list);
 	sort_arr(sorted_list, size);
 	set_ranks(lsta, sorted_list);
-	push_all_to_b(lsta, lstb);
-	sort_a(lsta);
 	calculate_cost(lsta, lstb);
 }
 
@@ -87,7 +85,7 @@ int	main(int argc, char *argv[])
 	sort_stack(&lsta, &lstb);
 	while (lsta)
 	{
-		ft_printf("num is %d rank is %d\n", lsta->node->data, lsta->node->rank);
+		ft_printf("num is %d rank is %d cost a are %d and %d cost b  are %d and %d\n", lsta->node->data, lsta->node->rank lsta->);
 		lsta = lsta->next;
 	}
 }
