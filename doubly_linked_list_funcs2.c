@@ -15,8 +15,6 @@ void	rrotate_top_bottom(t_dlist **lst)
 {
 	t_dlist	*tail;
 
-	if (!lst || !*lst || !(*lst)->next)
-		return ;
 	tail = get_last(*lst);
 	tail->previous->next = NULL;
 	add_front(lst, tail);
@@ -25,29 +23,9 @@ void	rrotate_top_bottom(t_dlist **lst)
 void	rotate_top_bottom(t_dlist **lst)
 {
 	t_dlist	*head;
-	t_dlist	*new_head;
 
-	if (!lst || !*lst || !(*lst)->next)
-		return ;
 	head = *lst;
-	new_head = head->next;
-	new_head->previous = NULL;
-	head->next = NULL;
-	*lst = new_head;
+	head->next->previous = NULL;
+	*lst = head->next;
 	add_back(lst, head);
-}
-
-int	dlst_size(t_dlist *lst)
-{
-	int	i;
-
-	if (!lst)
-		return (0);
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
 }
