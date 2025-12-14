@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:11:29 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/09 12:19:05 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:19:38 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -34,8 +34,16 @@ void	pa(t_dlist **lsta, t_dlist **lstb)
 	if (!(*lstb))
 		return ;
 	last_of_b = get_last(*lstb);
-	last_of_b->previous->next = NULL;
-	add_back(lsta, last_of_b);
+	if (!last_of_b->previous)
+	{
+		*lstb = NULL;
+		add_back(lsta, last_of_b);
+	}
+	else
+	{
+		last_of_b->previous->next = NULL;
+		add_back(lsta, last_of_b);
+	}
 }
 
 void	pb(t_dlist **lsta, t_dlist **lstb)
@@ -45,6 +53,16 @@ void	pb(t_dlist **lsta, t_dlist **lstb)
 	if (!(*lsta))
 		return ;
 	last_of_a = get_last(*lsta);
-	last_of_a->previous->next = NULL;
-	add_back(lstb, last_of_a);
+	if (!last_of_a->previous)
+	{
+		last_of_a->previous = NULL;
+		*lsta = NULL;
+		add_back(lstb, last_of_a);
+	}
+	else
+	{
+		last_of_a->previous->next = NULL;
+		last_of_a->previous = NULL;
+		add_back(lstb, last_of_a);
+	}
 }

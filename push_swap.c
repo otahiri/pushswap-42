@@ -6,10 +6,11 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:17:41 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/09 11:04:21 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:55:39 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include "ft_printf/ft_printf.h"
 
 int	check_nums(char *num)
 {
@@ -61,15 +62,22 @@ void	sort_stack(t_dlist **lsta, t_dlist **lstb)
 {
 	int	*sorted_list;
 	int	size;
-	t_dlist	
 
 	size = dlst_size(*lsta);
 	sorted_list = ft_calloc(size, sizeof(int));
 	copy_dlst(*lsta, sorted_list);
 	sort_arr(sorted_list, size);
 	set_ranks(lsta, sorted_list);
-	while ()
-	calculate_cost(lsta, lstb);
+	push_three_to_b(lsta, lstb);
+	sort_b(lstb);
+	print_list(*lstb);
+	while (*lsta)
+	{
+		calculate_cost(lsta, lstb);
+		apply_move(lsta, lstb);
+		pb(lsta, lstb);
+		print_list(*lstb);
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -85,9 +93,9 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 		parse_string(&lsta, argv[i++]);
 	sort_stack(&lsta, &lstb);
-	while (lsta)
+	while (lstb)
 	{
-		ft_printf("num is %d rank is %d cost a are %d and %d cost b  are %d and %d\n", lsta->node->data, lsta->node->rank, lsta->node->cost_a_ra, lsta->node->cost_a_rra, lsta->node->cost_b_rb, lsta->node->cost_b_rrb);
-		lsta = lsta->next;
+		ft_printf("num is %d\n", lstb->node->data);
+		lstb = lstb->next;
 	}
 }

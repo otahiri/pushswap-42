@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 10:13:39 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/06 11:58:27 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:20:33 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,23 @@ t_dlist	*new_list(int num)
 	t_dlist	*node;
 
 	node = ft_calloc(1, sizeof(t_dlist));
+	if (!node)
+		return (NULL);
 	node->node = ft_calloc(1, sizeof(t_node));
+	if (!node->node)
+		return (free(node), NULL);
 	node->node->data = num;
 	return (node);
 }
 
 t_dlist	*get_last(t_dlist *lst)
 {
-	if (!lst || !lst->next)
+	t_dlist	*head;
+
+	head = lst;
+	if (!lst)
 		return (lst);
-	while (lst->next)
+	while (lst->next != head)
 		lst = lst->next;
 	return (lst);
 }
@@ -39,13 +46,15 @@ void	add_back(t_dlist **lst, t_dlist *node)
 		return ;
 	if (!*lst)
 	{
+		node->next = node;
+		node->previous = node;
 		*lst = node;
 		return ;
 	}
 	last = get_last(*lst);
 	last->next = node;
 	node->previous = last;
-	node->next = NULL;
+	node->next = *lst;
 }
 
 void	add_front(t_dlist **lst, t_dlist *node)
@@ -56,12 +65,12 @@ void	add_front(t_dlist **lst, t_dlist *node)
 		return ;
 	if (!*lst)
 	{
-		node->next = NULL;
-		node->previous = NULL;
+		node->next = node;
+		node->previous = node;
 		*lst = node;
 		return ;
 	}
-	node->previous = NULL;
+	node->previous = get_last(*lst);
 	node->next = *lst;
 	(*lst)->previous = node;
 	*lst = node;
@@ -69,27 +78,20 @@ void	add_front(t_dlist **lst, t_dlist *node)
 
 void	swap_last_elements(t_dlist **lst)
 {
-	t_dlist	*last;
-	t_dlist	*blast;
-	t_dlist	*head;
+	t_dlist	*tail;
+	t_dlist	*btail;
+	int		size;
 
-	if (!lst || !*lst || !(*lst)->next)
+	size = dlst_size(*lst);
+	if (size < 2)
 		return ;
-	head = *lst;
-	last = get_last(*lst);
-	blast = last->previous;
-	if (!blast->previous)
+	else if (size == 2)
 	{
-		blast->next = NULL;
-		last->previous = NULL;
-		last->next = blast;
-		blast->previous = last;
-		*lst = last;
-		return ;
+		*lst = (*lst)->next;
 	}
-	last->next = blast;
-	blast->next = NULL;
-	last->previous = blast->previous;
-	last->previous->next = last;
-	blast->previous = last;
+	tail = get_last(*lst);
+	btail = tail->previous;
+	btail->previous->next = *lst;
+	add_back(lst, tail);
+	add_back(lst, btail);
 }

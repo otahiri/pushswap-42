@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:20:06 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/09 11:03:32 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:54:29 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ typedef struct s_node
 {
 	int				data;
 	int				rank;
-	int				cost_a_ra;
-	int				cost_b_rb;
-	int				cost_a_rra;
-	int				cost_b_rrb;
+	int				cost_a;
+	int				cost_b;
 }					t_node;
 
 typedef struct s_dlist
@@ -62,8 +60,15 @@ void				set_ranks(t_dlist **lsta, int *sorted_list);
 void				push_all_to_b(t_dlist **lsta, t_dlist **lstb);
 void				calculate_cost(t_dlist **lsta, t_dlist **lstb);
 void				set_cost(t_dlist **lst, int size, int idxa, int idxb);
-void				for_each_cost(t_dlist *node, t_dlist **lstb,
-						t_dlist **lsta);
+void				for_each_cost(t_dlist *node, t_dlist *lstb, t_dlist *lsta);
 void				calculate_cost(t_dlist **lsta, t_dlist **lstb);
+int					get_abs(int num);
+void				push_three_to_b(t_dlist **lsta, t_dlist **lstb);
+void				get_cheapest(t_dlist *lst, int *cost_a, int *cost_b);
+void				sep_moves(t_dlist **lsta, t_dlist **lstb, int *cheap_a,
+						int *cheap_b);
+void				apply_move(t_dlist **lsta, t_dlist **lstb);
+void				sort_b(t_dlist **lstb);
+void	print_list(t_dlist *lst);
 
 #endif

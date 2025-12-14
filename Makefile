@@ -7,8 +7,8 @@ NAME = push_swap
 
 HEADER = push_swap.h
 
-SRCS = custom_atoi.c doubly_linked_list_funcs1.c doubly_linked_list_funcs2.c\
-			 push_swap.c push_swap_utils2.c push_swap_utils3.c push_swap_utils4.c push_swap_utils.c
+SRCS = custom_atoi.c doubly_linked_list_funcs1.c doubly_linked_list_funcs2.c push_swap.c\
+			 push_swap_utils2.c push_swap_utils3.c push_swap_utils4.c push_swap_utils5.c push_swap_utils.c
 
 FT_PRINTF = libftprintf.a
 

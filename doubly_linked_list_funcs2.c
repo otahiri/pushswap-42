@@ -18,6 +18,8 @@ void	rrotate_top_bottom(t_dlist **lst)
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
 	tail = get_last(*lst);
+	if (!tail->previous)
+		return ;
 	tail->previous->next = NULL;
 	add_front(lst, tail);
 }

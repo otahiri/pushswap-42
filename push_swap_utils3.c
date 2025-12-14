@@ -13,8 +13,8 @@
 
 void	rrr(t_dlist **lsta, t_dlist **lstb)
 {
-	rra(lsta);
-	rrb(lstb);
+	*lsta = (*lsta)->previous;
+	*lstb = (*lstb)->previous;
 }
 
 void	throw_error(void)
