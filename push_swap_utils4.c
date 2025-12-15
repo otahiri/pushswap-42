@@ -6,10 +6,9 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:56:37 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/13 12:04:05 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:23:31 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
 int	get_abs(int num)
@@ -22,25 +21,17 @@ int	get_abs(int num)
 
 void	for_each_cost(t_dlist *node, t_dlist *lstb, t_dlist *lsta)
 {
-	int	i_a;
-	int	i_b;
-	int	l_a;
-	int	l_b;
+	int		i_a;
+	int		i_b;
+	int		l_a;
+	int		l_b;
 
 	i_a = 1;
 	i_b = 1;
 	l_a = dlst_size(lsta);
 	l_b = dlst_size(lstb);
-	while (lsta != node)
-	{
-		i_a++;
-		lsta = lsta->next;
-	}
-	while (lstb)
-	{
-		i_b++;
-		lstb = lstb->next;
-	}
+	i_b += get_lstb_cost(lstb, node);
+	i_a += get_node_idx(lsta, node);
 	node->node->cost_a = (i_a - l_a) * (i_a > l_a / 2) + i_a * (i_a <= l_a / 2);
 	node->node->cost_b = (i_b - l_b) * (i_b > l_b / 2) + i_b * (i_b <= l_b / 2);
 }
@@ -48,21 +39,17 @@ void	for_each_cost(t_dlist *node, t_dlist *lstb, t_dlist *lsta)
 void	calculate_cost(t_dlist **lsta, t_dlist **lstb)
 {
 	t_dlist	*tmpa;
-	t_dlist	*tmpb;
+	t_dlist	*head_a;
 
+	head_a = *lsta;
 	tmpa = *lsta;
-	tmpb = *lstb;
-	while (tmpa)
+	while (1)
 	{
 		for_each_cost(tmpa, *lstb, *lsta);
 		tmpa = tmpa->next;
+		if (tmpa == head_a)
+			break ;
 	}
-	tmpb = *lstb;
-	while (tmpb)
-	{
-		(tmpb) = (tmpb)->next;
-	}
-	ft_printf("\n");
 }
 
 void	push_three_to_b(t_dlist **lsta, t_dlist **lstb)

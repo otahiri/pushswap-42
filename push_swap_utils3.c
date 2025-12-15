@@ -6,13 +6,17 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 10:39:39 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/09 10:00:57 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:26:42 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 void	rrr(t_dlist **lsta, t_dlist **lstb)
 {
+	if (!lstb || !*lstb || (*lstb)->next == *lstb)
+		return ;
+	if (!lsta || !*lsta || (*lsta)->next == *lsta)
+		return ;
 	*lsta = (*lsta)->previous;
 	*lstb = (*lstb)->previous;
 }
@@ -25,14 +29,18 @@ void	throw_error(void)
 
 void	copy_dlst(t_dlist *lst, int *arr)
 {
-	int	i;
+	int		i;
+	t_dlist	*head;
 
 	i = 0;
-	while (lst)
+	head = lst;
+	while (1)
 	{
 		arr[i] = lst->node->data;
 		lst = lst->next;
 		i++;
+		if (lst == head)
+			break ;
 	}
 }
 
@@ -66,7 +74,7 @@ void	set_ranks(t_dlist **lsta, int *sorted_list)
 	t_dlist	*dlist;
 
 	dlist = *lsta;
-	while (dlist)
+	while (1)
 	{
 		i = 0;
 		while (sorted_list[i])
@@ -79,5 +87,7 @@ void	set_ranks(t_dlist **lsta, int *sorted_list)
 			i++;
 		}
 		dlist = dlist->next;
+		if (dlist == *lsta)
+			break ;
 	}
 }

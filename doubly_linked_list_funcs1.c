@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 10:13:39 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/13 11:20:33 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:53:27 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,65 +33,70 @@ t_dlist	*get_last(t_dlist *lst)
 	head = lst;
 	if (!lst)
 		return (lst);
-	while (lst->next != head)
+	while (1)
+	{
 		lst = lst->next;
+		if (lst->next == head)
+			break ;
+	}
 	return (lst);
 }
 
 void	add_back(t_dlist **lst, t_dlist *node)
 {
-	t_dlist	*last;
+	t_dlist	*tail;
+	t_dlist	*head;
 
-	if (!node || !lst)
-		return ;
-	if (!*lst)
+	if (!lst || !*lst)
 	{
 		node->next = node;
 		node->previous = node;
 		*lst = node;
 		return ;
 	}
-	last = get_last(*lst);
-	last->next = node;
-	node->previous = last;
-	node->next = *lst;
+	tail = get_last(*lst);
+	head = *lst;
+	node->next = head;
+	node->previous = tail;
+	tail->next = node;
+	head->previous = node;
+	*lst = head;
 }
 
 void	add_front(t_dlist **lst, t_dlist *node)
 {
-	t_dlist	*last;
-
-	if (!node || !lst)
-		return ;
-	if (!*lst)
+	if (!lst || !*lst)
 	{
 		node->next = node;
 		node->previous = node;
 		*lst = node;
 		return ;
 	}
-	node->previous = get_last(*lst);
-	node->next = *lst;
+	(*lst)->previous->next = node;
+	node->previous = (*lst)->previous;
+	node->next = (*lst);
 	(*lst)->previous = node;
-	*lst = node;
+	(*lst) = node;
 }
 
-void	swap_last_elements(t_dlist **lst)
+void	swap_first_elements(t_dlist **lst)
 {
+	t_dlist	*head;
+	t_dlist	*second;
+	t_dlist	*third;
 	t_dlist	*tail;
-	t_dlist	*btail;
-	int		size;
 
-	size = dlst_size(*lst);
-	if (size < 2)
+	if (!lst || !*lst || (*lst)->next == *lst)
 		return ;
-	else if (size == 2)
-	{
-		*lst = (*lst)->next;
-	}
-	tail = get_last(*lst);
-	btail = tail->previous;
-	btail->previous->next = *lst;
-	add_back(lst, tail);
-	add_back(lst, btail);
+	head = *lst;
+	second = head->next;
+	third = second->next;
+	tail = head->previous;
+	head->next = third;
+	second->next = head;
+	tail->next = second;
+	head->previous = second;
+	second->previous = tail;
+	third->previous = head;
+	*lst = second;
 }

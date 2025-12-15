@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:20:06 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/13 11:54:29 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:53:28 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_dlist				*new_list(int num);
 t_dlist				*get_last(t_dlist *lst);
 void				add_back(t_dlist **lst, t_dlist *node);
 void				add_front(t_dlist **lst, t_dlist *node);
-void				swap_last_elements(t_dlist **lst);
+void				swap_first_elements(t_dlist **lst);
 void				rotate_top_bottom(t_dlist **lst);
 void				rrotate_top_bottom(t_dlist **lst);
 void				sa(t_dlist **lst);
@@ -69,6 +69,9 @@ void				sep_moves(t_dlist **lsta, t_dlist **lstb, int *cheap_a,
 						int *cheap_b);
 void				apply_move(t_dlist **lsta, t_dlist **lstb);
 void				sort_b(t_dlist **lstb);
-void	print_list(t_dlist *lst);
+void				print_list(t_dlist *lst);
+t_dlist				*get_biggest_num(t_dlist *lst);
+int					get_node_idx(t_dlist *lst, t_dlist *node);
+int					get_lstb_cost(t_dlist *lstb, t_dlist *node);
 
 #endif

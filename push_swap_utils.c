@@ -6,63 +6,55 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 11:11:29 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/13 11:19:38 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:40:21 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 void	sa(t_dlist **lst)
 {
-	swap_last_elements(lst);
+	swap_first_elements(lst);
 }
 
 void	sb(t_dlist **lst)
 {
-	swap_last_elements(lst);
+	swap_first_elements(lst);
 }
 
 void	ss(t_dlist **lsta, t_dlist **lstb)
 {
-	swap_last_elements(lsta);
-	swap_last_elements(lstb);
+	swap_first_elements(lsta);
+	swap_first_elements(lstb);
 }
 
 void	pa(t_dlist **lsta, t_dlist **lstb)
 {
-	t_dlist	*last_of_b;
+	t_dlist	*node;
 
-	if (!(*lstb))
-		return ;
-	last_of_b = get_last(*lstb);
-	if (!last_of_b->previous)
-	{
+	node = *lstb;
+	if (node->next == node)
 		*lstb = NULL;
-		add_back(lsta, last_of_b);
-	}
 	else
 	{
-		last_of_b->previous->next = NULL;
-		add_back(lsta, last_of_b);
+		node->previous->next = node->next;
+		node->next->previous = node->previous;
+		*lstb = node->next;
 	}
+	add_front(lsta, node);
 }
 
 void	pb(t_dlist **lsta, t_dlist **lstb)
 {
-	t_dlist	*last_of_a;
+	t_dlist	*node;
 
-	if (!(*lsta))
-		return ;
-	last_of_a = get_last(*lsta);
-	if (!last_of_a->previous)
-	{
-		last_of_a->previous = NULL;
+	node = *lsta;
+	if (node->next == node)
 		*lsta = NULL;
-		add_back(lstb, last_of_a);
-	}
 	else
 	{
-		last_of_a->previous->next = NULL;
-		last_of_a->previous = NULL;
-		add_back(lstb, last_of_a);
+		node->previous->next = node->next;
+		node->next->previous = node->previous;
+		*lsta = node->next;
 	}
+	add_front(lstb, node);
 }

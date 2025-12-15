@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 10:12:49 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/07 11:00:05 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:22:19 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -41,15 +41,19 @@ void	rotate_top_bottom(t_dlist **lst)
 
 int	dlst_size(t_dlist *lst)
 {
-	int	i;
+	int		i;
+	t_dlist	*head;
 
+	i = 0;
 	if (!lst)
 		return (0);
-	i = 0;
-	while (lst)
+	head = lst;
+	while (1)
 	{
 		i++;
 		lst = lst->next;
+		if (lst == head)
+			break ;
 	}
 	return (i);
 }

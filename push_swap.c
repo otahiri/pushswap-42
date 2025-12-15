@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:17:41 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/13 11:55:39 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:06:10 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -47,7 +47,7 @@ void	parse_string(t_dlist **lsta, char *nums)
 			throw_error();
 		res_num = custom_atoi(split_nums[i]);
 		tmp = *lsta;
-		while (tmp)
+		while (tmp && tmp->next != *lsta)
 		{
 			if (tmp->node->data == res_num)
 				throw_error();
@@ -70,13 +70,13 @@ void	sort_stack(t_dlist **lsta, t_dlist **lstb)
 	set_ranks(lsta, sorted_list);
 	push_three_to_b(lsta, lstb);
 	sort_b(lstb);
-	print_list(*lstb);
 	while (*lsta)
 	{
 		calculate_cost(lsta, lstb);
 		apply_move(lsta, lstb);
 		pb(lsta, lstb);
 		print_list(*lstb);
+		ft_printf("\n");
 	}
 }
 
@@ -93,9 +93,5 @@ int	main(int argc, char *argv[])
 	while (i < argc)
 		parse_string(&lsta, argv[i++]);
 	sort_stack(&lsta, &lstb);
-	while (lstb)
-	{
-		ft_printf("num is %d\n", lstb->node->data);
-		lstb = lstb->next;
-	}
+	print_list(lstb);
 }
