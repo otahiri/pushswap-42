@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/06 11:11:29 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/17 16:46:21 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/12/17 16:49:27 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/12/17 16:49:59 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+
+#include "ft_checker_bonus.h"
 
 void	sa(t_dlist **lst)
 {
 	swap_first_elements(lst);
-	ft_printf("sa\n");
 }
 
 void	sb(t_dlist **lst)
 {
 	swap_first_elements(lst);
-	ft_printf("sb\n");
 }
 
 void	ss(t_dlist **lsta, t_dlist **lstb)
 {
 	swap_first_elements(lsta);
 	swap_first_elements(lstb);
-	ft_printf("ss\n");
 }
 
 void	pa(t_dlist **lsta, t_dlist **lstb)
@@ -46,7 +44,6 @@ void	pa(t_dlist **lsta, t_dlist **lstb)
 		*lstb = node->next;
 	}
 	add_front(lsta, node);
-	ft_printf("pa\n");
 }
 
 void	pb(t_dlist **lsta, t_dlist **lstb)
@@ -67,5 +64,4 @@ void	pb(t_dlist **lsta, t_dlist **lstb)
 	node->next = node;
 	node->previous = node;
 	add_front(lstb, node);
-	ft_printf("pb\n");
 }

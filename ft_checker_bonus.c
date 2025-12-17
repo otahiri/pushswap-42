@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils5.c                                 :+:      :+:    :+:   */
+/*   ft_checker_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 17:31:17 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/16 17:33:05 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/12/17 16:40:20 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/12/17 17:14:45 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "ft_checker_bonus.h"
+#include <unistd.h>
 
-void	free_all(char **str)
+int	main(int argc, char *argv[])
 {
-	int	i;
+	char *line;
 
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str[i]);
-	free(str);
+	return (0);
 }

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils5.c                                 :+:      :+:    :+:   */
+/*   custom_split_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 17:31:17 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/16 17:33:05 by otahiri-         ###   ########.fr       */
+/*   Created: 2025/12/17 11:58:47 by otahiri-          #+#    #+#             */
+/*   Updated: 2025/12/17 12:24:18 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	free_all(char **str)
+int	is_sep(char c, char *set)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str[i]);
-	free(str);
+	if (c == *set || c == *(set + 1))
+		return (1);
+	return (0);
 }

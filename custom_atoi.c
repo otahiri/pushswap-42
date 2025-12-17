@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   custom_atoi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 09:31:16 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/10/23 20:10:33 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:03:45 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	custom_atoi(const char *nptr)
+long	custom_atoi(const char *nptr)
 {
 	int		sign;
 	long	num;
@@ -31,10 +31,10 @@ int	custom_atoi(const char *nptr)
 		num *= 10;
 		num += *nptr - '0';
 		nptr++;
-		if (num * sign > INT_MAX || num * sign < INT_MIN)
-			throw_error();
+		if (num * sign > 2147483647 || num * sign < -2147483648)
+			return (2147483648);
 	}
 	if (*nptr)
-		throw_error();
+		return (2147483648);
 	return (num * sign);
 }

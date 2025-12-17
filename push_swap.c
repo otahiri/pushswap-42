@@ -6,84 +6,99 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 10:17:41 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/15 12:06:10 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:13:30 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include "ft_printf/ft_printf.h"
 
-int	check_nums(char *num)
+int	find_node(int idx, t_dlist *lst)
 {
+	int		i;
+	int		size;
+	t_dlist	*head;
+
+	i = 0;
+	size = dlst_size(lst);
+	head = lst;
+	while (lst->rank != idx)
+	{
+		lst = lst->next;
+		i++;
+		if (lst == head)
+			return (-1);
+	}
+	if (i <= size / 2)
+		return (i);
+	else
+		return (i - size);
+}
+
+void	push_to_a(t_dlist **lsta, t_dlist **lstb)
+{
+	int	size;
+	int	moves;
+	int	max;
+
+	size = dlst_size(*lstb);
+	while (size)
+	{
+		max = find_max_index(*lstb);
+		moves = find_node(max, *lstb);
+		if (moves < 0)
+		{
+			while (moves++ < 0)
+				rrb(lstb);
+		}
+		else
+		{
+			while (moves-- > 0)
+				rb(lstb);
+		}
+		pa(lsta, lstb);
+		size--;
+	}
+}
+
+void	pointless(int *range, int *size, int *i, t_dlist *lsta)
+{
+	*size = dlst_size(lsta);
+	*i = 0;
+	*range = (30 * (*size > 100)) + (15 * (*size <= 100));
+}
+
+void	chunks(t_dlist **lsta, t_dlist **lstb)
+{
+	int	range;
+	int	size;
 	int	i;
 
-	i = 0;
-	if (num[i] == '-' || num[i] == '+')
+	pointless(&range, &size, &i, *lsta);
+	while (size)
 	{
-		i++;
-		if (!ft_isdigit(num[i]))
-			throw_error();
-	}
-	while (num[i])
-	{
-		if (!ft_isdigit(num[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	parse_string(t_dlist **lsta, char *nums)
-{
-	char		**split_nums;
-	int			i;
-	t_dlist		*tmp;
-	long long	res_num;
-
-	i = 0;
-	split_nums = ft_split(nums, ' ');
-	while (split_nums[i])
-	{
-		if (!check_nums(split_nums[i]))
-			throw_error();
-		res_num = custom_atoi(split_nums[i]);
-		tmp = *lsta;
-		while (tmp && tmp->next != *lsta)
+		if ((*lsta)->rank <= i)
 		{
-			if (tmp->node->data == res_num)
-				throw_error();
-			tmp = tmp->next;
+			pb(lsta, lstb);
+			i++;
+			size--;
 		}
-		add_back(lsta, new_list(res_num));
-		i++;
+		else if ((*lsta)->rank <= i + range)
+		{
+			pb(lsta, lstb);
+			rb(lstb);
+			i++;
+			size--;
+		}
+		else
+			ra(lsta);
 	}
-}
-
-void	sort_stack(t_dlist **lsta, t_dlist **lstb)
-{
-	int	*sorted_list;
-	int	size;
-
-	size = dlst_size(*lsta);
-	sorted_list = ft_calloc(size, sizeof(int));
-	copy_dlst(*lsta, sorted_list);
-	sort_arr(sorted_list, size);
-	set_ranks(lsta, sorted_list);
-	push_three_to_b(lsta, lstb);
-	sort_b(lstb);
-	while (*lsta)
-	{
-		calculate_cost(lsta, lstb);
-		apply_move(lsta, lstb);
-		pb(lsta, lstb);
-		print_list(*lstb);
-		ft_printf("\n");
-	}
+	push_to_a(lsta, lstb);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_dlist	*lsta;
 	t_dlist	*lstb;
+	int		*sorted_arr;
 	int		i;
 
 	lsta = NULL;
@@ -92,6 +107,13 @@ int	main(int argc, char *argv[])
 	i++;
 	while (i < argc)
 		parse_string(&lsta, argv[i++]);
-	sort_stack(&lsta, &lstb);
-	print_list(lstb);
+	sorted_arr = fill_and_sort_arr(lsta);
+	set_rank(&lsta, sorted_arr);
+	free(sorted_arr);
+	if (dlst_size(lsta) < 6)
+		hard_sort(&lsta, &lstb);
+	else
+		chunks(&lsta, &lstb);
+	free_lst(&lsta);
+	free_lst(&lstb);
 }
