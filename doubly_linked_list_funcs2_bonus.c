@@ -57,24 +57,3 @@ int	dlst_size(t_dlist *lst)
 	}
 	return (i);
 }
-
-void	free_lst(t_dlist **lst)
-{
-	t_dlist	*head;
-	t_dlist	*current;
-	t_dlist	*next;
-
-	if (lst && *lst)
-	{
-		head = *lst;
-		current = head->next;
-		while (current != head)
-		{
-			next = current->next;
-			free(current);
-			current = next;
-		}
-		free(head);
-		*lst = NULL;
-	}
-}
