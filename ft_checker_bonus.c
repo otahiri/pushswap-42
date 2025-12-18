@@ -10,56 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
-#include <stdlib.h>
+#include "ft_printf/ft_printf.h"
 
 void	excute_func(char *func_name, t_dlist **lsta, t_dlist **lstb)
 {
 	const char	*funcs_names[10] = {"ra", "rb", "rra", "rrb", "sa", "sb", "pa",
 		"pb", "rr", "rrr"};
 
-	if (func_name == funcs_names[0])
+	if (!ft_strncmp(func_name, funcs_names[0], 2) && dlst_size(*lsta))
 		ra(lsta);
-	else if (func_name == funcs_names[1])
+	else if (!ft_strncmp(func_name, funcs_names[1], 2))
 		rb(lsta);
-	else if (func_name == funcs_names[2])
+	else if (!ft_strncmp(func_name, funcs_names[2], 3))
 		rra(lsta);
-	else if (func_name == funcs_names[3])
+	else if (!ft_strncmp(func_name, funcs_names[3], 3))
 		rrb(lsta);
-	else if (func_name == funcs_names[4])
+	else if (!ft_strncmp(func_name, funcs_names[4], 2))
 		sa(lsta);
-	else if (func_name == funcs_names[5])
+	else if (!ft_strncmp(func_name, funcs_names[5], 2))
 		sb(lsta);
-	else if (func_name == funcs_names[6])
+	else if (!ft_strncmp(func_name, funcs_names[6], 2))
 		pa(lsta, lstb);
-	else if (func_name == funcs_names[7])
+	else if (!ft_strncmp(func_name, funcs_names[7], 2))
 		pb(lsta, lstb);
-	else if (func_name == funcs_names[8])
+	else if (!ft_strncmp(func_name, funcs_names[8], 2))
 		rr(lsta, lstb);
-	else if (func_name == funcs_names[9])
+	else if (!ft_strncmp(func_name, funcs_names[9], 3))
 		rrr(lsta, lstb);
+	else
+	{
+		free_lst(lstb);
+		throw_error(lsta, NULL);
+	}
 }
 
 void	apply_funcs(t_dlist **lsta, t_dlist **lstb)
 {
 	char	*lines;
-	char	**sep_args;
+	char	*func_name;
 
 	lines = get_next_line(0);
-	sep_args = custom_split(lines, "\n");
 	while (lines)
 	{
-		ft_printf("%s\n", sep_args[0]);
-		if (*(sep_args + 1) != NULL)
-		{
-			free(lines);
-			throw_error(lsta, sep_args);
-		}
-		excute_func(sep_args[0], lsta, lstb);
+		func_name = ft_strtrim(lines, "\n");
+		excute_func(func_name, lsta, lstb);
 		free(lines);
-		free_all(sep_args);
+		free(func_name);
 		lines = get_next_line(0);
-		ft_printf("%s\n", lines);
-		sep_args = custom_split(lines, "\n");
 	}
 }
 
@@ -67,7 +64,7 @@ int	main(int argc, char *argv[])
 {
 	t_dlist	*lsta;
 	t_dlist	*lstb;
-	t_dlist *head;
+	t_dlist	*head;
 	int		i;
 
 	i = 1;
@@ -82,11 +79,12 @@ int	main(int argc, char *argv[])
 	head = lsta;
 	while (1)
 	{
-		ft_printf("%d ", lsta->num);
 		lsta = lsta->next;
 		if (lsta == head)
 			break ;
 	}
+	if (!ft_is_a_sorted(lsta))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 }
-
-

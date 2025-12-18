@@ -12,18 +12,45 @@
 
 #include "ft_checker_bonus.h"
 
-int	check_nums(char *num)
+int	check_nums(char *n)
 {
 	int	i;
 
 	i = 0;
-	if (num[i] == '-' || num[i] == '+')
-	{
+	if (n[i] == '-' || n[i] == '+')
 		i++;
-		if (!ft_isdigit(num[i]))
+	if (!ft_isdigit(n[i]))
+		return (0);
+	while (n[i])
+	{
+		if (!ft_isdigit(n[i]))
 			return (0);
+		i++;
 	}
 	return (1);
+}
+
+void	check_dups(t_dlist **lsta)
+{
+	t_dlist	*a;
+	t_dlist	*b;
+	t_dlist	*head;
+
+	if (!lsta || !*lsta || (*lsta)->next == *lsta)
+		return ;
+	a = *lsta;
+	head = *lsta;
+	while (a->next != head)
+	{
+		b = a->next;
+		while (b != head)
+		{
+			if (a->num == b->num)
+				throw_error(lsta, NULL);
+			b = b->next;
+		}
+		a = a->next;
+	}
 }
 
 void	parse_string(t_dlist **lsta, char *nums)
@@ -34,7 +61,7 @@ void	parse_string(t_dlist **lsta, char *nums)
 	long long	res_num;
 
 	i = 0;
-	split_nums = custom_split(nums, " \n");
+	split_nums = custom_split(nums, " ");
 	while (split_nums[i])
 	{
 		if (!check_nums(split_nums[i]))
@@ -62,13 +89,11 @@ int	ft_is_a_sorted(t_dlist *lst)
 	head = lst;
 	if (!lst)
 		return (0);
-	while (1)
+	while (lst->next != head)
 	{
 		if (lst->rank > lst->next->rank)
 			return (0);
 		lst = lst->next;
-		if (lst == head)
-			break ;
 	}
 	return (1);
 }

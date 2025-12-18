@@ -107,9 +107,14 @@ int	main(int argc, char *argv[])
 	i++;
 	while (i < argc)
 		parse_string(&lsta, argv[i++]);
+	if (!(lsta))
+		throw_error(&lsta, NULL);
+	check_dups(&lsta);
 	sorted_arr = fill_and_sort_arr(lsta);
 	set_rank(&lsta, sorted_arr);
 	free(sorted_arr);
+	if (ft_is_a_sorted(lsta))
+		return (free_lst(&lsta), 1);
 	if (dlst_size(lsta) < 6)
 		hard_sort(&lsta, &lstb);
 	else

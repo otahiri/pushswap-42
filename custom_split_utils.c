@@ -13,7 +13,11 @@
 
 int	is_sep(char c, char *set)
 {
-	if (c == *set || c == *(set + 1))
-		return (1);
+	while (*set)
+	{
+		if (*set == c)
+			return (1);
+		set++;
+	}
 	return (0);
 }

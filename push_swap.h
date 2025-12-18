@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 12:07:56 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/17 16:13:26 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:46:21 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void				apply_moves(int moves, t_dlist **lst);
 void				sort_more_than_three(t_dlist **lsta, t_dlist **lstb);
 int					find_max_index(t_dlist *lst);
 void				hard_sort(t_dlist **lsta, t_dlist **lstb);
+void				check_dups(t_dlist **lsta);
 
 #endif

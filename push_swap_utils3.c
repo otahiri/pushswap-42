@@ -26,6 +26,6 @@ void	throw_error(t_dlist **lst, char **str)
 {
 	free_lst(lst);
 	free_all(str);
-	ft_printf("Error\n");
-	exit(255);
+	write(2, "Error\n", 6);
+	exit(1);
 }
