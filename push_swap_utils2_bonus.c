@@ -11,15 +11,17 @@
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
 
-void	ra(t_dlist **lsta)
+void	ra(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lstb;
 	if (!lsta || !*lsta || (*lsta)->next == *lsta)
 		return ;
 	*lsta = (*lsta)->next;
 }
 
-void	rb(t_dlist **lstb)
+void	rb(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lsta;
 	if (!lstb || !*lstb || (*lstb)->next == *lstb)
 		return ;
 	*lstb = (*lstb)->next;
@@ -35,15 +37,17 @@ void	rr(t_dlist **lsta, t_dlist **lstb)
 	*lstb = (*lstb)->next;
 }
 
-void	rra(t_dlist **lsta)
+void	rra(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lstb;
 	if (!lsta || !*lsta || (*lsta)->next == *lsta)
 		return ;
 	*lsta = (*lsta)->previous;
 }
 
-void	rrb(t_dlist **lstb)
+void	rrb(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lsta;
 	if (!lstb || !*lstb || (*lstb)->next == *lstb)
 		return ;
 	*lstb = (*lstb)->previous;

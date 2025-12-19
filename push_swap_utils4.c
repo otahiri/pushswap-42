@@ -60,6 +60,8 @@ void	parse_string(t_dlist **lsta, char *nums)
 
 	i = 0;
 	split_nums = custom_split(nums, " ");
+	if (!split_nums[i])
+		throw_error(lsta, split_nums);
 	while (split_nums[i])
 	{
 		if (!check_nums(split_nums[i]))

@@ -26,7 +26,7 @@ typedef struct s_dlist
 }					t_dlist;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 400000
 # endif
 
 char				*get_next_line(int fd);
@@ -49,20 +49,20 @@ void				rrotate_top_bottom(t_dlist **lst);
 void				rotate_top_bottom(t_dlist **lst);
 int					dlst_size(t_dlist *lst);
 void				free_lst(t_dlist **lst);
-void				ra(t_dlist **lsta);
-void				rb(t_dlist **lstb);
+void				ra(t_dlist **lsta, t_dlist **lstb);
+void				rb(t_dlist **lsta, t_dlist **lstb);
 void				rr(t_dlist **lsta, t_dlist **lstb);
-void				rra(t_dlist **lsta);
-void				rrb(t_dlist **lstb);
+void				rra(t_dlist **lsta, t_dlist **lstb);
+void				rrb(t_dlist **lsta, t_dlist **lstb);
 void				rrr(t_dlist **lsta, t_dlist **lstb);
-void				free_all(char **str);
-void				free_lst(t_dlist **lst);
-void				throw_error(t_dlist **lst, char **str);
-void				sa(t_dlist **lst);
-void				sb(t_dlist **lst);
+void				sa(t_dlist **lsta, t_dlist **lstb);
+void				sb(t_dlist **lsta, t_dlist **lstb);
 void				ss(t_dlist **lsta, t_dlist **lstb);
 void				pa(t_dlist **lsta, t_dlist **lstb);
 void				pb(t_dlist **lsta, t_dlist **lstb);
+void				free_all(char **str);
+void				free_lst(t_dlist **lst);
+void				throw_error(t_dlist **lst, char **str);
 int					is_sep(char c, char *set);
 char				**custom_split(char const *s, char *set);
 long				custom_atoi(const char *nptr);

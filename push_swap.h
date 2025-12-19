@@ -61,5 +61,8 @@ void				sort_more_than_three(t_dlist **lsta, t_dlist **lstb);
 int					find_max_index(t_dlist *lst);
 void				hard_sort(t_dlist **lsta, t_dlist **lstb);
 void				check_dups(t_dlist **lsta);
+void				push_to_a(t_dlist **lsta, t_dlist **lstb);
+void				pointless(int *range, int *size, int *i, t_dlist *lsta);
+void				chunks(t_dlist **lsta, t_dlist **lstb);
 
 #endif
