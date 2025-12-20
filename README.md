@@ -1,10 +1,20 @@
 _This project has been created as part of the 42 curriculum by otahiri-._
+
+
+
 **Description**:
 	this project aim to teach you to come up with a special algorithm under constraint, the main challenge is you only have 2 stacks and a set of operations you can apply on these stacks.
 	the goal is to sort the first stack with as little operations as possible, you are forced to rely on the second stack to aid you in the sorting.
+
+
+
 **Instructions**:
 	to use this program you need to run the command "make" and you get a file called push_swap, you can run this program by typing the following command "./push_swap" and enter any numbers you want as long as they are integers which means they are no bigger than 2147483647 and no smaller than -2147483648,
 	please keep in mind it will reject any number	bigger or smaller than these it will give you an error, it will also reject anything other than numbers.
+
+
+
+
 **Resources**:
 	https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 	https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e
