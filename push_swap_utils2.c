@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ra(t_dlist **lsta)
+void	ra(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lstb;
 	if (!lsta || !*lsta || (*lsta)->next == *lsta)
 		return ;
 	*lsta = (*lsta)->next;
 	ft_printf("ra\n");
 }
 
-void	rb(t_dlist **lstb)
+void	rb(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lsta;
 	if (!lstb || !*lstb || (*lstb)->next == *lstb)
 		return ;
 	*lstb = (*lstb)->next;
@@ -38,16 +40,18 @@ void	rr(t_dlist **lsta, t_dlist **lstb)
 	ft_printf("rr\n");
 }
 
-void	rra(t_dlist **lsta)
+void	rra(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lstb;
 	if (!lsta || !*lsta || (*lsta)->next == *lsta)
 		return ;
 	*lsta = (*lsta)->previous;
 	ft_printf("rra\n");
 }
 
-void	rrb(t_dlist **lstb)
+void	rrb(t_dlist **lsta, t_dlist **lstb)
 {
+	(void)lsta;
 	if (!lstb || !*lstb || (*lstb)->next == *lstb)
 		return ;
 	*lstb = (*lstb)->previous;

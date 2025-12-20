@@ -11,42 +11,42 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sort_three(t_dlist **lst)
+void	sort_three(t_dlist **lsta, t_dlist **lstb)
 {
 	int	a;
 	int	b;
 	int	c;
 
-	a = (*lst)->num;
-	b = (*lst)->next->num;
-	c = (*lst)->next->next->num;
+	a = (*lsta)->num;
+	b = (*lsta)->next->num;
+	c = (*lsta)->next->next->num;
 	if (a < b && b < c && a < c)
 		return ;
 	else if (a < b && b > c && a < c)
 	{
-		sa(lst);
-		ra(lst);
+		sa(lsta, lstb);
+		ra(lsta, lstb);
 	}
 	else if (a > b && b > c && a > c)
 	{
-		sa(lst);
-		rra(lst);
+		sa(lsta, lstb);
+		rra(lsta, lstb);
 	}
 	else if (a > b && b < c && a > c)
-		ra(lst);
+		ra(lsta, lstb);
 	else if (a > b && b < c && a < c)
-		sa(lst);
+		sa(lsta, lstb);
 	else if (a < b && b > c && a > c)
-		rra(lst);
+		rra(lsta, lstb);
 }
 
-void	apply_moves(int moves, t_dlist **lst)
+void	apply_moves(int moves, t_dlist **lsta, t_dlist **lstb)
 {
 	if (moves > 0)
 	{
 		while (moves > 0)
 		{
-			ra(lst);
+			ra(lsta, lstb);
 			moves--;
 		}
 	}
@@ -54,7 +54,7 @@ void	apply_moves(int moves, t_dlist **lst)
 	{
 		while (moves < 0)
 		{
-			rra(lst);
+			rra(lsta, lstb);
 			moves++;
 		}
 	}
@@ -69,11 +69,11 @@ void	sort_more_than_three(t_dlist **lsta, t_dlist **lstb)
 	while (dlst_size(*lsta) > 3)
 	{
 		moves = find_node(idx, *lsta);
-		apply_moves(moves, lsta);
+		apply_moves(moves, lsta, lstb);
 		pb(lsta, lstb);
 		idx++;
 	}
-	sort_three(lsta);
+	sort_three(lsta, lstb);
 	while (dlst_size(*lstb))
 		pa(lsta, lstb);
 }
@@ -88,10 +88,10 @@ void	hard_sort(t_dlist **lsta, t_dlist **lstb)
 	else if (size == 2)
 	{
 		if ((*lsta)->num > (*lsta)->next->num)
-			sa(lsta);
+			sa(lsta, lstb);
 	}
 	else if (size == 3)
-		sort_three(lsta);
+		sort_three(lsta, lstb);
 	else
 		sort_more_than_three(lsta, lstb);
 }

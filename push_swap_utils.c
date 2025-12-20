@@ -11,15 +11,17 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sa(t_dlist **lst)
+void	sa(t_dlist **lsta, t_dlist **lstb)
 {
-	swap_first_elements(lst);
+	(void)lstb;
+	swap_first_elements(lsta);
 	ft_printf("sa\n");
 }
 
-void	sb(t_dlist **lst)
+void	sb(t_dlist **lsta, t_dlist **lstb)
 {
-	swap_first_elements(lst);
+	(void)lsta;
+	swap_first_elements(lstb);
 	ft_printf("sb\n");
 }
 

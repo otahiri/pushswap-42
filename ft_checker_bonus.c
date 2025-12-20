@@ -11,96 +11,86 @@
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
 
-int	get_func_idx(int total)
+int	my_str_cmp(char *s1, char *s2)
 {
-	static int	hash_index[11] = {29537, 29538, 29281, 29282, 28769,
-		28770, 29555, 29298, 7500402, 7500385, 7500386};
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
+
+int	get_idx(char *func)
+{
+	static char	*func_names[11] = {"sa\n", "sb\n", "ss\n", "pa\n", "pb\n",
+		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
 	int			i;
 
 	i = 0;
 	while (i < 11)
 	{
-		if (total == hash_index[i])
+		if (my_str_cmp(func, func_names[i]) == 0)
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int	total_of_three(char *lines)
+void	use_funcs(int *funcs_idx, int size, t_dlist **lsta, t_dlist **lstb)
 {
-	int	total;
-
-	total = lines[0];
-	total = total << 8;
-	total |= lines[1];
-	total = total << 8;
-	total |= lines[2];
-	return (total);
-}
-
-int	total_of_two(char *lines)
-{
-	int	total;
-
-	total = lines[0];
-	total = total << 8;
-	total |= lines[1];
-	return (total);
-}
-
-void	free_lsts_lines(t_dlist **lsta, t_dlist **lstb, char **lines)
-{
-	free_all(lines);
-	free_lst(lstb);
-	throw_error(lsta, NULL);
-}
-
-void	use_funcs(int *func_hash, int size, t_dlist **lsta, t_dlist **lstb)
-{
-	static void	(*func[11])(t_dlist **a, t_dlist **b) = {sa, sb, ra, rb, pa,
-		pb, ss, rr, rrr, rra, rrb};
 	int			i;
+	static void	(*funcs[11])(t_dlist **lsta, t_dlist **lstb) = {sa, sb, ss,
+		pa, pb, ra, rb, rr, rra, rrb, rrr};
 
 	i = 0;
 	while (i < size)
 	{
-		func[func_hash[i]](lsta, lstb);
+		funcs[funcs_idx[i]](lsta, lstb);
 		i++;
 	}
 }
 
+int	*get_func_idx(int *size)
+{
+	char	*buffer;
+	int		i;
+	int		idx;
+	int		*funcs_idx;
+	int		tmp;
+
+	i = 0;
+	idx = 0;
+	funcs_idx = malloc(10000 * sizeof(int));
+	buffer = get_next_line(0);
+	while (buffer)
+	{
+		tmp = get_idx(buffer);
+		if (tmp < 0)
+			return (free(funcs_idx), free(buffer), NULL);
+		funcs_idx[idx++] = tmp;
+		free(buffer);
+		buffer = get_next_line(0);
+	}
+	*size = idx;
+	return (funcs_idx);
+}
+
 void	apply_funcs(t_dlist **lsta, t_dlist **lstb)
 {
-	char	*lines;
-	char	**sep_lines;
-	int		probable_idx;
-	int		i;
-	int		*func_hash;
-	int		idx;
+	int	*funcs_idx;
+	int	size;
 
-	idx = 0;
-	i = 0;
-	probable_idx = -1;
-	func_hash = malloc(10000 * sizeof(int));
-	lines = ft_calloc(40000, sizeof(char));
-	read(0, lines, 40000);
-	sep_lines = custom_split(lines, "\n");
-	free(lines);
-	while (sep_lines[i])
-	{
-		if (sep_lines[i][2] != '\0')
-			probable_idx = total_of_three(sep_lines[i]);
-		else if (sep_lines[i][2] == '\0')
-			probable_idx = total_of_two(sep_lines[i]);
-		probable_idx = get_func_idx(probable_idx);
-		if (probable_idx < 0)
-			free_lsts_lines(lsta, lstb, sep_lines);
-		else
-			func_hash[idx++] = probable_idx;
-		i++;
-	}
-	use_funcs(func_hash, idx, lsta, lstb);
+	size = 0;
+	funcs_idx = get_func_idx(&size);
+	if (!funcs_idx)
+		throw_error(lsta, NULL);
+	use_funcs(funcs_idx, size, lsta, lstb);
+	free(funcs_idx);
 }
 
 int	main(int argc, char *argv[])
@@ -120,14 +110,10 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	apply_funcs(&lsta, &lstb);
-	t_dlist *head = lsta;
-	while (lsta->next != head)
-	{
-		ft_printf("%d\n", lsta->num);
-		lsta = lsta->next;
-	}
-	if (!ft_is_a_sorted(lsta))
+	if (!ft_is_a_sorted(lsta) && !lstb)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
+	free_lst(&lsta);
+	free_lst(&lstb);
 }

@@ -41,12 +41,12 @@ void	push_to_a(t_dlist **lsta, t_dlist **lstb)
 		if (moves < 0)
 		{
 			while (moves++ < 0)
-				rrb(lstb);
+				rrb(lsta, lstb);
 		}
 		else
 		{
 			while (moves-- > 0)
-				rb(lstb);
+				rb(lsta, lstb);
 		}
 		pa(lsta, lstb);
 		size--;
@@ -78,12 +78,12 @@ void	chunks(t_dlist **lsta, t_dlist **lstb)
 		else if ((*lsta)->rank <= i + range)
 		{
 			pb(lsta, lstb);
-			rb(lstb);
+			rb(lsta, lstb);
 			i++;
 			size--;
 		}
 		else
-			ra(lsta);
+			ra(lsta, lstb);
 	}
 	push_to_a(lsta, lstb);
 }
