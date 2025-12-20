@@ -30,10 +30,10 @@ $(FT_PRINTF):
 
 
 $(NAME): $(HEADER) $(FT_PRINTF) $(SRCS)
-	$(CC) -g $(CFLAGS) $(SRCS) $(FT_PRINTF) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(FT_PRINTF) -o $(NAME)
 
 bonus: $(BONUS_HEADER) $(FT_PRINTF) $(BONUS_SRCS)
-	$(CC) -g $(CFLAGS) $(BONUS_SRCS) $(FT_PRINTF) -o $(BONUS)
+	$(CC) $(CFLAGS) $(BONUS_SRCS) $(FT_PRINTF) -o $(BONUS)
 
 clean:
 	make -C ./ft_printf clean

@@ -11,20 +11,6 @@
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
 
-int	my_str_cmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
 int	get_idx(char *func)
 {
 	static char	*func_names[11] = {"sa\n", "sb\n", "ss\n", "pa\n", "pb\n",

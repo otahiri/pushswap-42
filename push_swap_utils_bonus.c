@@ -9,7 +9,6 @@
 /*   Updated: 2025/12/17 16:49:59 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_checker_bonus.h"
 
 void	sa(t_dlist **lsta, t_dlist **lstb)

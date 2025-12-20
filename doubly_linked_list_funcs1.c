@@ -9,7 +9,6 @@
 /*   Updated: 2025/12/16 18:12:38 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
 t_dlist	*new_list(int num)
@@ -76,19 +75,22 @@ void	swap_first_elements(t_dlist **lst)
 	t_dlist	*head;
 	t_dlist	*second;
 	t_dlist	*third;
-	t_dlist	*tail;
 
 	if (!lst || !*lst || (*lst)->next == *lst)
 		return ;
 	head = *lst;
 	second = head->next;
+	if (second->next == head)
+	{
+		*lst = second;
+		return ;
+	}
 	third = second->next;
-	tail = head->previous;
-	head->next = third;
+	second->previous = head->previous;
+	second->previous->next = second;
 	second->next = head;
-	tail->next = second;
 	head->previous = second;
-	second->previous = tail;
+	head->next = third;
 	third->previous = head;
 	*lst = second;
 }

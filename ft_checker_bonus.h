@@ -69,5 +69,11 @@ long				custom_atoi(const char *nptr);
 int					check_nums(char *num);
 void				parse_string(t_dlist **lsta, char *nums);
 int					ft_is_a_sorted(t_dlist *lst);
+int					my_str_cmp(char *s1, char *s2);
+int					get_idx(char *func);
+void				use_funcs(int *funcs_idx, int size, t_dlist **lsta,
+						t_dlist **lstb);
+int					*get_func_idx(int *size);
+void				apply_funcs(t_dlist **lsta, t_dlist **lstb);
 
 #endif

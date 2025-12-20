@@ -9,7 +9,6 @@
 /*   Updated: 2025/12/17 17:09:00 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_checker_bonus.h"
 
 static int	word_count(char const *s, char *set)
