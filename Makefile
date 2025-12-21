@@ -37,8 +37,6 @@ bonus: $(BONUS_HEADER) $(FT_PRINTF) $(BONUS_SRCS)
 
 clean:
 	make -C ./ft_printf clean
-	rm -f $(NAME)
-	rm -f $(BONUS)
 
 fclean: clean
 	make -C ./ft_printf fclean
