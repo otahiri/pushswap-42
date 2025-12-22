@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:48:40 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/18 09:31:20 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/22 09:12:34 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void				use_funcs(int *funcs_idx, int size, t_dlist **lsta,
 						t_dlist **lstb);
 int					*get_func_idx(int *size);
 void				apply_funcs(t_dlist **lsta, t_dlist **lstb);
+void				check_dups(t_dlist **lsta);
 
 #endif

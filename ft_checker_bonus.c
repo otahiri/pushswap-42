@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:40:20 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/18 09:32:03 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/22 09:44:03 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
@@ -91,15 +91,15 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (1);
 	while (i < argc)
-	{
-		parse_string(&lsta, argv[i]);
-		i++;
-	}
+		parse_string(&lsta, argv[i++]);
+	if (!(lsta))
+		throw_error(&lsta, NULL);
+	check_dups(&lsta);
 	apply_funcs(&lsta, &lstb);
-	if (!ft_is_a_sorted(lsta) && !lstb)
-		ft_printf("KO\n");
-	else
+	if (ft_is_a_sorted(lsta) && !lstb)
 		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	free_lst(&lsta);
 	free_lst(&lstb);
 }

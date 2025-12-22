@@ -6,7 +6,7 @@
 /*   By: otahiri- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 17:00:56 by otahiri-          #+#    #+#             */
-/*   Updated: 2025/12/17 17:01:05 by otahiri-         ###   ########.fr       */
+/*   Updated: 2025/12/22 09:14:06 by otahiri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_checker_bonus.h"
@@ -84,7 +84,7 @@ int	ft_is_a_sorted(t_dlist *lst)
 		return (0);
 	while (lst->next != head)
 	{
-		if (lst->rank > lst->next->rank)
+		if (lst->num > lst->next->num)
 			return (0);
 		lst = lst->next;
 	}
